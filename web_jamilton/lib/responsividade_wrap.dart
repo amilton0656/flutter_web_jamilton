@@ -16,7 +16,7 @@ class _ResponsividadeWrapState extends State<ResponsividadeWrap> {
     // var alturaAppBar = AppBar().preferredSize.height;
     // var alturaItem = (altura - alturaBarraStatus - alturaAppBar) / 3;
 
-    var altura = 100.0;
+    var altura = 200.0;
     var largura = 300.0;
 
     return Scaffold(
