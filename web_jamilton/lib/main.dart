@@ -18,24 +18,17 @@ import 'package:web_jamilton/tamanho_textos.dart';
 
 void main() {
   runApp(
-    DevicePreview(
-      enabled: true,
-      tools: const [
-        ...DevicePreview.defaultTools,
-        // CustomPlugin(),
-      ],
-      builder: (context) => const MaterialApp(
-        // home: ResponsividadeMediaQuery(),
-        // home: ResponsividadeRowCol(),
-        // home: ResponsividadeWrap(),
-        // home: Orientacao(),
-        // home: RegrasLayout(),
-        // home: LojaVirtual(),
-        // home: TamanhoTextos(),
-        // home: TamanhoProporcional(),
-        home: DiferentesTamanhos(),
-        debugShowCheckedModeBanner: false,
-      ),
+    const MaterialApp(
+      // home: ResponsividadeMediaQuery(),
+      // home: ResponsividadeRowCol(),
+      // home: ResponsividadeWrap(),
+      // home: Orientacao(),
+      // home: RegrasLayout(),
+      // home: LojaVirtual(),
+      // home: TamanhoTextos(),
+      // home: TamanhoProporcional(),
+      home: DiferentesTamanhos(),
+      debugShowCheckedModeBanner: false,
     ),
   );
 }

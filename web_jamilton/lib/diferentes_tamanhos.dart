@@ -10,6 +10,8 @@ class DiferentesTamanhos extends StatefulWidget {
 class _DiferentesTamanhosState extends State<DiferentesTamanhos> {
   @override
   Widget build(BuildContext context) {
+
+    String? texto;
     return Scaffold(
       appBar: AppBar(title: Text('Tamanho de Textos'),),
       body:IntrinsicHeight(
@@ -17,14 +19,17 @@ class _DiferentesTamanhosState extends State<DiferentesTamanhos> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              width: 300,
+              child: Text(texto ?? 'sem valor'),
+            ),
+            Container(
+              width: 200,
               color: Colors.blue,
               child: Text(
               'É um fato conhecido '
               ),
             ),
             Container(
-              width: 300,
+              width: 200,
               color: Colors.blue,
               child: Text(
               'É um fato conhecido de todos que um leitor se distrairá com o'
