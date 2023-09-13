@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:facebook_interface/models/models.dart';
+import 'package:facebook_interface/utils/paleta_cores.dart';
 import 'package:flutter/material.dart';
 
 class AreaEstoria extends StatelessWidget {
@@ -18,11 +19,26 @@ class AreaEstoria extends StatelessWidget {
       height: 200,
       color: Colors.white,
       child: ListView.builder(
-        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
         scrollDirection: Axis.horizontal,
-        itemCount: estorias.length,
+        itemCount: 1 + estorias.length,
         itemBuilder: (context, index) {
-          Estoria estoria = estorias[index];
+          if (index == 0) {
+            Estoria estoriaUsuario = Estoria(
+              usuario: usuario,
+              urlImagem: usuario.urlImagem,
+            );
+
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: CartaoEstoria(
+                estoria: estoriaUsuario,
+                adicionarEstoria: true,
+              ),
+            );
+          }
+
+          Estoria estoria = estorias[index - 1];
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4),
             child: CartaoEstoria(estoria: estoria),
@@ -35,10 +51,12 @@ class AreaEstoria extends StatelessWidget {
 
 class CartaoEstoria extends StatelessWidget {
   final Estoria estoria;
+  final bool adicionarEstoria;
 
   const CartaoEstoria({
     super.key,
     required this.estoria,
+    this.adicionarEstoria = false,
   });
 
   @override
@@ -53,7 +71,33 @@ class CartaoEstoria extends StatelessWidget {
             width: 110,
             fit: BoxFit.cover,
           ),
-        )
+        ),
+        Container(
+          height: double.infinity,
+          width: 110,
+          decoration: BoxDecoration(
+            gradient: PaletaCores.degradeEstoria,
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        Positioned(
+            top: 8,
+            left: 8,
+            child: adicionarEstoria
+                ? Container(
+                    height: 40,
+                    width: 40,
+                    decoration: const BoxDecoration(
+                        color: Colors.white, shape: BoxShape.circle),
+                    child: IconButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: () {},
+                      icon: const Icon(Icons.add),
+                      iconSize: 30,
+                      color: PaletaCores.azulFacebook,
+                    ),
+                  )
+                : Container()),
       ],
     );
   }
