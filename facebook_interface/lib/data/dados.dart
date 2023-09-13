@@ -92,7 +92,7 @@ List<Estoria> estorias = [
   ),
 ];
 
-/*
+
 
 /* Lista de postagens */
 List<Postagem> postagens = [
@@ -173,4 +173,3 @@ List<Postagem> postagens = [
       compartilhamentos: 3
   ),
 ];
-*/
