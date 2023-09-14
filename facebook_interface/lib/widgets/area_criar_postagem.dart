@@ -35,9 +35,10 @@ class AreaCriarPostagem extends StatelessWidget {
               )
             ],
           ),
-          const Divider(
+          Divider(
             height: 10,
             thickness: 0.5,
+            color: Colors.grey.shade500,
           ),
           Container(
             height: 40,
@@ -58,9 +59,9 @@ class AreaCriarPostagem extends StatelessWidget {
                     ),
                   ),
 
-                  const VerticalDivider(
+                  VerticalDivider(
                     width: 8,
-                    color: Colors.black,
+                    color: Colors.grey.shade500,
                   ),
 
                   //Foto
@@ -76,9 +77,9 @@ class AreaCriarPostagem extends StatelessWidget {
                     ),
                   ),
 
-                  const VerticalDivider(
+                  VerticalDivider(
                     width: 8,
-                    color: Colors.black,
+                    color: Colors.grey.shade500,
                   ),
 
                   //sala
