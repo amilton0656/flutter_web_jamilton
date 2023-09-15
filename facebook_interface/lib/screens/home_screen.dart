@@ -104,13 +104,12 @@ class HomeDesktop extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Flexible(flex: 2, child: ListaOpcoes(usuario: usuarioAtual)),
-        Spacer(),
+        Flexible(flex: 2, child: ListaContatos(usuarios: usuarioAtual)),
+        const Spacer(),
         Flexible(
           flex: 4,
           child: CustomScrollView(
             slivers: [
-              
               //Estorias
               SliverPadding(
                 padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
@@ -121,14 +120,14 @@ class HomeDesktop extends StatelessWidget {
                   ),
                 ),
               ),
-        
+
               //Postagem
               SliverToBoxAdapter(
                 child: AreaCriarPostagem(
                   usuario: usuarioAtual,
                 ),
               ),
-        
+
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
@@ -141,7 +140,7 @@ class HomeDesktop extends StatelessWidget {
             ],
           ),
         ),
-        Spacer(),
+        const Spacer(),
         Flexible(flex: 2, child: ListaContatos(usuarios: usuariosOnline)),
       ],
     );
