@@ -20,23 +20,40 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final TrackingScrollController _scrollController = TrackingScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Responsivo(
-        mobile: HomeMobile(),
-        desktop: HomeDesktop(),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        body: Responsivo(
+          mobile: HomeMobile(scrollController: _scrollController),
+          desktop: HomeDesktop(scrollController: _scrollController),
+        ),
       ),
     );
   }
 }
 
 class HomeMobile extends StatelessWidget {
-  const HomeMobile({super.key});
+  final TrackingScrollController scrollController;
+
+  const HomeMobile({
+    super.key,
+    required this.scrollController,
+  });
 
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+      controller: scrollController,
       slivers: [
         //appBar
         SliverAppBar(
@@ -98,17 +115,29 @@ class HomeMobile extends StatelessWidget {
 }
 
 class HomeDesktop extends StatelessWidget {
-  const HomeDesktop({super.key});
+  final TrackingScrollController scrollController;
+  const HomeDesktop({
+    super.key,
+    required this.scrollController,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Flexible(flex: 2, child: ListaContatos(usuarios: usuarioAtual)),
-        const Spacer(),
         Flexible(
-          flex: 4,
+            flex: 20,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: ListaOpcoes(usuario: usuarioAtual),
+            )),
+        const Spacer(
+          flex: 5,
+        ),
+        Flexible(
+          flex: 60,
           child: CustomScrollView(
+            controller: scrollController,
             slivers: [
               //Estorias
               SliverPadding(
@@ -140,8 +169,10 @@ class HomeDesktop extends StatelessWidget {
             ],
           ),
         ),
-        const Spacer(),
-        Flexible(flex: 2, child: ListaContatos(usuarios: usuariosOnline)),
+        const Spacer(
+          flex: 5,
+        ),
+        Flexible(flex: 20, child: ListaContatos(usuarios: usuariosOnline)),
       ],
     );
   }

@@ -5,6 +5,8 @@ import 'package:facebook_interface/widgets/imagem_perfil.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 
+import '../utils/responsivo.dart';
+
 class CartaoPostagem extends StatelessWidget {
   final Postagem postagem;
 
@@ -12,40 +14,50 @@ class CartaoPostagem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      padding: const EdgeInsets.all(8),
-      margin: const EdgeInsets.all(8),
-      width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          //cabecalho
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CabecalhoPostagem(postagem: postagem),
-                Text(postagem.descricao),
-              ],
+    bool isDesktop = Responsivo.isDesktop(context);
+    return Card(
+      margin: EdgeInsets.symmetric(vertical: 8, horizontal: isDesktop ? 5 : 0),
+      elevation: isDesktop ? 1 : 0,
+      shape: isDesktop
+      ? RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      )
+      : null,
+      child: Container(
+        color: Colors.white,
+        padding: const EdgeInsets.all(8),
+        margin: const EdgeInsets.all(8),
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            //cabecalho
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CabecalhoPostagem(postagem: postagem),
+                  Text(postagem.descricao),
+                ],
+              ),
             ),
-          ),
-
-          //Imagem
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
-            child: CachedNetworkImage(
-              imageUrl: postagem.urlImagem,
+    
+            //Imagem
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
+              child: CachedNetworkImage(
+                imageUrl: postagem.urlImagem,
+              ),
             ),
-          ),
-
-          //Estatisticas
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: EstatisticasPostagem(postagem: postagem),
-          ),
-        ],
+    
+            //Estatisticas
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: EstatisticasPostagem(postagem: postagem),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -10,6 +10,7 @@ class ListaOpcoes extends StatelessWidget {
 
   final List<List> _opcoes = const [
     [LineIcons.userFriends, PaletaCores.azulFacebook, 'Amigos'],
+    [LineIcons.userFriends, PaletaCores.azulFacebook, 'Amigos'],
     [LineIcons.facebookMessenger, PaletaCores.azulFacebook, 'Mensagens'],
     [LineIcons.flag, PaletaCores.azulFacebook, 'Páginas'],
     [LineIcons.users, PaletaCores.azulFacebook, 'Grupos'],
@@ -29,9 +30,9 @@ class ListaOpcoes extends StatelessWidget {
     return Container(
       child: ListView.builder(
         padding: const EdgeInsets.symmetric(vertical: 10),
-        itemCount: 1 + _opcoes.length,
+        itemCount: _opcoes.length,
         itemBuilder: (ctx, index) {
-          List item = _opcoes[index - 1];
+          List item = _opcoes[index];
           if (index == 0) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 6),
@@ -44,9 +45,11 @@ class ListaOpcoes extends StatelessWidget {
 
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 6),
-            child: BotaoImagemPerfil(
-              usuario: usuario,
-              onTap: () {},
+            child: Opcao(
+              icone: item[0],
+              cor: item[1],
+              texto: item[2],
+              ontap: (){},
             ),
           );
         },
